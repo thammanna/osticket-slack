@@ -15,3 +15,5 @@ class SlackPluginConfig extends PluginConfig {
         );
     }	
 }
+
+?>
