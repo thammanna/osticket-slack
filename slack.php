@@ -15,6 +15,7 @@ class SlackPlugin extends Plugin {
 		try {			
 			global $ost;		
 			$payload = array(
+				'channel' => $this->getConfig()->get('slack-channel'),
 						'attachments' =>
 							array (
 								array (	
