@@ -24,4 +24,4 @@ https://github.com/thammanna/osticket-slack
 
 Info
 ------
-This plugin uses CURL and tested on osTicket-1.8.
+This plugin uses CURL and tested on osTicket-1.8 and osTicket-1.9.12.
