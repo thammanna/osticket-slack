@@ -2,7 +2,7 @@
 
 return array(
     'id' =>             'osticket:slack', 
-    'version' =>        '0.1',
+    'version' =>        '0.3',
     'name' =>           'Slack notifier',
     'author' =>         'Thammanna Jammada',
     'description' =>    'Notify Slack on new ticket.',
