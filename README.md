@@ -14,13 +14,19 @@ leave empty to allow all tickets to be sent to slack
 
 Changelog
 ---------
+0.3 - 17 december 2016
+[bugfix] "PHP syntax error" by ramonfincken
+
 0.2 - 17 december 2016
 [feature] "Ignore when subject equals regex" by ramonfincken
-https://github.com/ramonfincken/osticket-slack
 
 0.1 - 3 december 2014
 [release] "Init" by thammanna
-https://github.com/thammanna/osticket-slack
+
+Authors
+-------
+thammanna https://github.com/thammanna/osticket-slack
+ramonfincken https://github.com/ramonfincken/osticket-slack
 
 Info
 ------

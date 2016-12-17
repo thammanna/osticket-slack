@@ -38,10 +38,11 @@ class SlackPlugin extends Plugin {
 							),
 						);
 
+
 			/** Filter on subject based on regex ? */
 			if(isset($regex_subject_ignore) && !empty($regex_subject_ignore)) {
 				$subject = $ticket->getSubject();
-				if(preg_match($regex_subject_ignore, $subject) {
+				if(preg_match($regex_subject_ignore, $subject)) {
 					error_log('The message slack notification was ignored due to subject ('.htmlspecialchars($subject).') regex ('.htmlspecialchars($regex_subject_ignore).') ignore match.');
 					return;					
 				}
