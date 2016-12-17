@@ -15,6 +15,8 @@ class SlackPlugin extends Plugin {
 			global $ost;
 
 			$regex_subject_ignore = $this->getConfig()->get('slack-regex-subject-ignore');
+			$ticket_subject = $ticket->getSubject();
+
 			$payload = array(
 						'attachments' =>
 							array (
@@ -27,7 +29,7 @@ class SlackPlugin extends Plugin {
 									'fields' => 
 									array(
 										array (
-											'title' => $ticket->getSubject(),
+											'title' => $ticket_subject,
 											'value' => "created by " . $ticket->getName() . "(" . $ticket->getEmail() 
 														. ") in " . $ticket->getDeptName() . "(Department) via " 
 														. $ticket->getSource(),
@@ -40,12 +42,12 @@ class SlackPlugin extends Plugin {
 
 
 			/** Filter on subject based on regex ? */
-			if(isset($regex_subject_ignore) && !empty($regex_subject_ignore)) {
-				$subject = $ticket->getSubject();
-				if(preg_match($regex_subject_ignore, $subject)) {
-					error_log('The message slack notification was ignored due to subject ('.htmlspecialchars($subject).') regex ('.htmlspecialchars($regex_subject_ignore).') ignore match.');
+			if(isset($regex_subject_ignore) && $regex_subject_ignore != '') {
+				if(preg_match($regex_subject_ignore, $ticket_subject)) {
+					error_log('The message slack notification was ignored due to subject ('.htmlspecialchars($ticket_subject).') regex ('.htmlspecialchars($regex_subject_ignore).') ignore match.');
 					return;					
 				}
+
 			}
 			/** /Filter on subject based on regex ? */
 
