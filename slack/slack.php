@@ -1,5 +1,4 @@
 <?php
-
 require_once(INCLUDE_DIR.'class.signal.php');
 require_once(INCLUDE_DIR.'class.plugin.php');
 require_once('config.php');
@@ -13,7 +12,9 @@ class SlackPlugin extends Plugin {
 	
 	function onTicketCreated($ticket){		
 		try {			
-			global $ost;		
+			global $ost;
+
+			$regex_subject_ignore = $this->getConfig()->get('slack-regex-subject-ignore');
 			$payload = array(
 						'attachments' =>
 							array (
@@ -36,7 +37,17 @@ class SlackPlugin extends Plugin {
 								),
 							),
 						);
-						
+
+			/** Filter on subject based on regex ? */
+			if(isset($regex_subject_ignore) && !empty($regex_subject_ignore)) {
+				$subject = $ticket->getSubject();
+				if(preg_match($regex_subject_ignore, $subject) {
+					error_log('The message slack notification was ignored due to subject ('.htmlspecialchars($subject).') regex ('.htmlspecialchars($regex_subject_ignore).') ignore match.');
+					return;					
+				}
+			}
+			/** /Filter on subject based on regex ? */
+
 			$data_string = utf8_encode(json_encode($payload));
 			$url = $this->getConfig()->get('slack-webhook-url');
 			 

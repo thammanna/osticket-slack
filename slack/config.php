@@ -11,7 +11,11 @@ class SlackPluginConfig extends PluginConfig {
             'slack-webhook-url' => new TextboxField(array(
                 'label' => 'Webhook URL',
                 'configuration' => array('size'=>100, 'length'=>200),
-            )),			            
+            )),
+            'slack-regex-subject-ignore' => new TextboxField(array(
+                'label' => 'Ignore when subject equals regex',
+                'configuration' => array('size'=>100, 'length'=>200),
+            )),	            
         );
     }	
 }
